@@ -61,6 +61,7 @@
           <div id="introduction" data-traverse-target="introduction">
             <div class="doc-row">
               <div class="doc-copy">
+                <p>undefined</p>
               </div>
               <div class="doc-examples">
                 <section>
@@ -196,6 +197,32 @@
                       <p>Search terms in the format key:value, ie. <code>_search=name:Phillip</code></p>
                     </div>
                   </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">_page</div>
+                      <div class="prop-subtitle"> in query </div>
+                      <div class="prop-subtitle">
+                        <span class="json-property-type">number</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </div>
+                    </div>
+                    <div class="prop-value">
+                      <p>Page number</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">_perPage</div>
+                      <div class="prop-subtitle"> in query </div>
+                      <div class="prop-subtitle">
+                        <span class="json-property-type">number</span>
+                        <span class="json-property-range" title="Value limits"></span>
+                      </div>
+                    </div>
+                    <div class="prop-value">
+                      <p>Number of records per page</p>
+                    </div>
+                  </div>
                 </section>
               </div>
               <div class="doc-examples"></div>
@@ -206,11 +233,7 @@
                   <div class="prop-row prop-group">
                     <div class="prop-name">
                       <div class="prop-title">200 OK</div>
-                      <div class="prop-ref">
-                        <span class="json-schema-ref-array">
-                          <a class="json-schema-ref" href="#/definitions/User">User</a>
-                        </span>
-                      </div>
+                      <div class="prop-ref"></div>
                       <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
                     </div>
                     <div class="prop-value">
@@ -220,11 +243,7 @@
                   <div class="prop-row prop-inner">
                     <div class="prop-name">type</div>
                     <div class="prop-value">
-                      <span class="json-property-type">
-                        <span class="json-schema-ref-array">
-                          <a class="json-schema-ref" href="#/definitions/User">User</a>
-                        </span>
-                      </span>
+                      <span class="json-property-type">object</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </div>
                   </div>
@@ -243,15 +262,21 @@
                   <h5>Response Example
                     <span>(200 OK)</span>
                   </h5>
-                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">[
-  {
-    <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;string (ObjectID)&quot;</span>,
-    <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-    <span class="hljs-attr">&quot;dateOfBirth&quot;</span>: <span class="hljs-string">&quot;string (ISODate)&quot;</span>,
-    <span class="hljs-attr">&quot;cpf&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-    <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-  }
-]
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;docs&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;_id&quot;</span>: <span class="hljs-string">&quot;string (ObjectID)&quot;</span>,
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;dateOfBirth&quot;</span>: <span class="hljs-string">&quot;string (ISODate)&quot;</span>,
+      <span class="hljs-attr">&quot;cpf&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ],
+  <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;perPage&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>,
+  <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;number&quot;</span>
+}
 </code></pre>
                   <!-- </div> -->
                 </section>
