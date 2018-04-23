@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:3.4
+    container_name: "mongodb-ingresse"
+    volumes:
+      - ./data:/data/db
+    restart: always
+    ports:
+      - "27017:27017"
+    
