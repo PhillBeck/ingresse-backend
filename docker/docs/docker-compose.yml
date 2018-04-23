@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ingresse-docs:
+    build: ./../../docs
+    image: ingresse-docs
+    container_name: ingresse-docs
+    ports:
+    - "8000:80"
