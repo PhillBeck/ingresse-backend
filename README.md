@@ -5,7 +5,7 @@ The application was built using [Go](https://golang.org/), and the [Macaron](htt
 
 ingresse-backend is a REST API with only one endpoint: `/users`. It implements the http verbs `POST`, `GET`, `PUT` and `DELETE`.
 
-ingresse-backend uses [MongoDB](https://www.mongodb.com) as database and [Redis](https://redis.io/) as a caching service.
+ingresse-backend uses [MongoDB](https://www.mongodb.com) for data persistence.
 
 ## Setting up
 
