@@ -37,13 +37,32 @@ paths:
         name: "_search"
         type: string
         description: "Search terms in the format key:value, ie. `_search=name:Phillip`"
+      - in: query
+        name: "_page"
+        type: number
+        description: "Page number"
+      - in: query
+        name: "_perPage"
+        type: number
+        description: "Number of records per page"
       responses:
         200:
           description: OK
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/User'
+            type: object
+            properties:
+              docs:
+                type: array
+                items:
+                  $ref: '#/definitions/User'
+              page:
+                type: number
+              pages:
+                type: number
+              perPage:
+                type: number
+              total:
+                type: number
         400:
           description: Invalid Query
           
