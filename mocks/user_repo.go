@@ -5,11 +5,11 @@
 package mocks
 
 import (
-	reflect "reflect"
-
+	golang_odm "github.com/PhillBeck/golang-odm"
 	model "github.com/PhillBeck/ingresse-backend/model"
 	gomock "github.com/golang/mock/gomock"
 	bson "gopkg.in/mgo.v2/bson"
+	reflect "reflect"
 )
 
 // MockIUser is a mock of IUser interface
@@ -58,6 +58,20 @@ func (m *MockIUser) GetByID(arg0 bson.ObjectId) (*model.User, error) {
 // GetByID indicates an expected call of GetByID
 func (mr *MockIUserMockRecorder) GetByID(arg0 interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockIUser)(nil).GetByID), arg0)
+}
+
+// Paginate mocks base method
+func (m *MockIUser) Paginate(arg0 bson.M, arg1, arg2 int) ([]*model.User, *golang_odm.PaginationInfo, error) {
+	ret := m.ctrl.Call(m, "Paginate", arg0, arg1, arg2)
+	ret0, _ := ret[0].([]*model.User)
+	ret1, _ := ret[1].(*golang_odm.PaginationInfo)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Paginate indicates an expected call of Paginate
+func (mr *MockIUserMockRecorder) Paginate(arg0, arg1, arg2 interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Paginate", reflect.TypeOf((*MockIUser)(nil).Paginate), arg0, arg1, arg2)
 }
 
 // Save mocks base method

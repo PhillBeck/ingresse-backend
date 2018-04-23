@@ -8,13 +8,14 @@ import (
 
 type User struct {
 	CollectionName string
-	Repo           IODMRepository
+	Repo           *odm.Repository
 }
 
 type IUser interface {
 	GetByID(bson.ObjectId) (*model.User, error)
 	Save(*model.User) error
 	DeleteByID(bson.ObjectId) error
+	Paginate(bson.M, int, int) ([]*model.User, *odm.PaginationInfo, error)
 }
 
 func NewUserRepo() *User {
@@ -42,4 +43,17 @@ func (u *User) DeleteByID(ID bson.ObjectId) error {
 	}
 
 	return u.Repo.Delete(user)
+}
+
+func (u *User) Paginate(query bson.M, perPage, page int) ([]*model.User, *odm.PaginationInfo, error) {
+	resultSet, info, err := u.Repo.Paginate(query, perPage, page)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var documents []*model.User
+
+	err = resultSet.All(&documents)
+
+	return documents, info, err
 }

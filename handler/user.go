@@ -5,6 +5,8 @@ import (
 	"net/http"
 
 	"github.com/PhillBeck/ingresse-backend/lib"
+	"github.com/PhillBeck/ingresse-backend/lib/query"
+	"github.com/PhillBeck/ingresse-backend/lib/responseHandler"
 	"github.com/PhillBeck/ingresse-backend/model"
 	"github.com/PhillBeck/ingresse-backend/service"
 	"gopkg.in/macaron.v1"
@@ -23,6 +25,14 @@ func (h *User) GetOne(ctx *macaron.Context) {
 	sID := ctx.Params("ID")
 
 	ctx.JSON(h.FindByID(sID))
+}
+
+func (h *User) GetList(ctx *macaron.Context) {
+	search := ctx.Query("_search")
+	page := ctx.QueryInt("_page")
+	perPage := ctx.QueryInt("_perPage")
+
+	ctx.JSON(h.Find(search, page, perPage))
 }
 
 func (h *User) Post(user model.User, ctx *macaron.Context) {
@@ -112,4 +122,21 @@ func (h *User) FindByIdAndReplace(user model.User, sID string) (int, interface{}
 
 	// Everything went ok
 	return http.StatusNoContent, nil
+}
+
+func (h *User) Find(search string, page, perPage int) (int, interface{}) {
+	paginationOptions, err := query.ParseQuery(search, page, perPage)
+	if err != nil {
+		response := lib.HandleError(err)
+		return response.StatusCode, response
+	}
+
+	docs, info, err := h.Service.Paginate(paginationOptions)
+	if err != nil {
+		response := lib.HandleError(err)
+		return response.StatusCode, response
+	}
+
+	response := responseHandler.MakePaginationResponse(docs, info)
+	return http.StatusOK, response
 }

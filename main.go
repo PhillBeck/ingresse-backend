@@ -31,6 +31,7 @@ func setupRoutes(app *macaron.Macaron) {
 
 	app.Group("/users", func() {
 		app.Post("/", binding.Bind(model.User{}), userHandler.Post)
+		app.Get("/", userHandler.GetList)
 		app.Get("/:ID", userHandler.GetOne)
 		app.Put("/:ID", binding.Bind(model.User{}), userHandler.Put)
 		app.Delete("/:ID", userHandler.Delete)

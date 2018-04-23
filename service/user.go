@@ -3,6 +3,8 @@ package service
 import (
 	"fmt"
 
+	"github.com/PhillBeck/golang-odm"
+
 	"github.com/PhillBeck/ingresse-backend/model"
 	"github.com/PhillBeck/ingresse-backend/repo"
 	"gopkg.in/mgo.v2/bson"
@@ -14,6 +16,7 @@ type IUserService interface {
 	DeleteByID(bson.ObjectId) error
 	Create(*model.User) error
 	FindByIdAndReplace(bson.ObjectId, *model.User) error
+	Paginate(options PaginationOptions) ([]*model.User, *odm.PaginationInfo, error)
 }
 
 type User struct {
@@ -52,4 +55,8 @@ func (s *User) FindByIdAndReplace(ID bson.ObjectId, user *model.User) error {
 	}
 
 	return s.Repository.Save(user)
+}
+
+func (s *User) Paginate(options PaginationOptions) ([]*model.User, *odm.PaginationInfo, error) {
+	return s.Repository.Paginate(options.Query, options.RecordsPerPage, options.Page)
 }

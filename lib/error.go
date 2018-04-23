@@ -18,9 +18,18 @@ func HandleError(err error) *ErrorResponse {
 		return handleInvalidID(err)
 	case "changing id":
 		return handleChangingID()
+	case "Invalid Query":
+		return handleInvalidQuery()
 	default:
 		return handleInternal(err)
 	}
+}
+
+func handleInvalidQuery() *ErrorResponse {
+	return &ErrorResponse{
+		StatusCode: 400,
+		Type:       "Validation Error",
+		Message:    "Invalid Query"}
 }
 
 func handleNotFound(err error) *ErrorResponse {
