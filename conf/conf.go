@@ -17,7 +17,7 @@ func readConfFile() {
 	var cfgFile string
 
 	if ci == "CIRCLECI" {
-		dir = "/go"
+		dir, _ = os.Getwd()
 	}
 
 	if env == "docker" {
