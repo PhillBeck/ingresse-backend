@@ -14,7 +14,7 @@ Since Go is not a major programming language yet, not everyone has a set up envi
 - Run under [Docker](https://www.docker.com/) (visual representation of code coverage not available)
 
 ### Running natively
-Assuming a working Go environment, run:
+Assuming a working Go environment (it's critical that the GOPATH environment variable is set according to the [guidelines](https://golang.org/doc/install)), run:
 ```
 go get -v github.com/PhillBeck/ingresse-backend/...
 cd $GOPATH/src/github/PhillBeck/ingresse-backend
