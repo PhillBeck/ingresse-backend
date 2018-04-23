@@ -13,7 +13,12 @@ func readConfFile() {
 	var err error
 	dir := os.Getenv("GOPATH")
 	env := os.Getenv("GOENV")
+	ci := os.Getenv("CI_ENV")
 	var cfgFile string
+
+	if ci == "CIRCLECI" {
+		dir = "/go"
+	}
 
 	if env == "docker" {
 		cfgFile = fmt.Sprintf("%s/src/github.com/PhillBeck/ingresse-backend/conf/conf.docker.ini", dir)
